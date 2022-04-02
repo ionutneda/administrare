@@ -32,4 +32,17 @@ and to be able to access them with a web interface. The interface should allow m
 
 Text normal
 ### TODO
-* View
+* View / controller
+* Stoc local (id, cod produs fk, categorie (cautare dupa cat), in stoc, stoc, rezervate, disponibile, rezervari)
+* Rezervare (id, cod produs fk, cantitate rezervata, user, data, detalii text)
+* Oferta/proforma (id, user, data, produse) // posibil api extern?
+* 
+* security/login
+* unit tests
+* pictures
+* pagination
+* exceptions
+* log
+* //optional - profiles calculator
+* import/export .csv and .pdf
+* 
