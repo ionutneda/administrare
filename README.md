@@ -23,7 +23,6 @@ and to be able to access them with a web interface. The interface should allow m
 * Implemented **SequenceGenerator** for the ID's and the **Unique constraint**.
 * *Learned about **Lombok** and the **Builder pattern** (I don't use them, I want to practice more with the core code)
 * Implemented **Unit Tests** for all the transactions needed by the app.
-* [Test cu link](https://google.com)
 
 ### In progress
 * Implemented the Service class (haven't seen the need for adding an implementation class)
