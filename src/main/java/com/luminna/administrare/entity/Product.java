@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 //TODO
-// try to include a builder pattern constructor
+// include a builder pattern constructor
 
 
 @Entity
@@ -24,18 +24,25 @@ public class Product {
     @Column(unique = true)
     private String code;
     private String name;
-    private Double price;   // need to use Decimal if I want to process it further
+    private Long price;   // need to use Decimal if I want to process it further
     private String currency;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "provider_id",
             referencedColumnName ="providerId")
     private Provider provider; // Here I might only need the provider Id
+    
+    // Optional TODO
+    // private Boolean inStock;
+    // private int quantity;
+    // private List<String> images;
+    // private String dimensions;
+    // private int weight;
 
 
     public Product(){}
 
-    public Product(String code, String name, Double price, String currency, Provider provider) {
+    public Product(String code, String name, Long price, String currency, Provider provider) {
         this.code = code;
         this.name = name;
         this.price = price;
@@ -67,11 +74,11 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
