@@ -1,6 +1,8 @@
 package com.luminna.administrare.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 //TODO
@@ -21,12 +23,18 @@ public class Product {
             generator = "product_sequence_generator")
     private Long Id;
 
+    @NotBlank(message = "Codul este obligatoriu.")
     @Column(unique = true)
     private String code;
-    private String name;
-    private Long price;   // need to use Decimal if I want to process it further
-    private String currency;
 
+    @NotBlank(message = "Numele este obligatoriu.")
+    private String name;
+
+    @NotBlank(message = "Pretul este obligatoriu.")
+    private Long price;   // need to use Decimal if I want to process it further
+    private String currency;  //todo remove the currency
+
+    @NotBlank(message = "Producatorul este obligatoriu.")
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "provider_id",
             referencedColumnName ="providerId")

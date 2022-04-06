@@ -6,13 +6,14 @@ Administrare app is a personalized software for managing different aspects of an
 Small Business, similar to an ERP. It uses Java, Maven, Spring Boot, Spring DATA JPA, Hibernate and MySQL for backend
 and Thymeleaf with Bootstrap for the frontend.
 
-*The application will be used in production*.
 
 ## Purpose & context
 The app should provide the users with easy access to centralized information about to the inventory, providers, 
 delivery terms and other related data. The main usage would be searching for the prices which are currently stored
 in more than 100 tables in different formats. The next ones would be searching the available stock, making stock 
 reservations and creating proposal drafts. Using these features would bring an estimate of 25% raise in productivity.
+
+*The application will be used in production*.
 
 ## Features
 
@@ -36,24 +37,34 @@ reservations and creating proposal drafts. Using these features would bring an e
 - add/modify users and assign roles as an administrator;
 - view and export the logs as an administrator;
 
-###### Other features:
-- Should be added on the go, as needed;
+## Optional features
+###### The user should be able to:
+- access and use the "Calculator sisteme de profile" page (profile systems calculator) without login;
+- access and view a statistics page without login;
+
 
 ### Work in  progress
 - Entity classes
+  - User
   - Product
   - Provider
 - Service classes
+  - UserService
   - ProductService
   - ProviderService
 - Repository classes
+  - UsertRepo
   - ProductRepo
   - ProviderRepo
 - Controller classes
+  - MainController
+  - UserController
   - ProductController
 - Resources - static
-  - index.html (login/signup)
-  - acasa.html (home)
+  - autentificare.html (login/signup)
+  - index.html (acasa/home)
+  - add-user.html
+  - update-user.html
   - adaugare_produs.html (add product)
 
 ### TODO
@@ -69,10 +80,10 @@ Excel file;
 - [ ] Implement Pagination;
 - [ ] Handle the Exceptions;
 - [ ] Implement the **Log** feature;
-- [ ] **Optional - profiles calculator
+
 
 ### Issues
 - I was able to create a product with the HTTP POST method by including the provider details in the product's body.
 However, I need to be able to just reference the provider with its ID. It wouldn't allow adding another product with
-the same provider (the provider should be unique).
+the same provider (the provider should be unique). 
 - 
