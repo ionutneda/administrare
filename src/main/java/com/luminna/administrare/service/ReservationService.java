@@ -1,14 +1,14 @@
 package com.luminna.administrare.service;
 
-import com.luminna.administrare.repository.ProviderRepository;
+import com.luminna.administrare.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProviderService {
+public class ReservationService {
 
     @Autowired
-    ProviderRepository providerRepository;
+    ReservationRepository reservationRepository;
 
     // find all
     // find by id

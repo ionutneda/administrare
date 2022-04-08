@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -57,7 +57,7 @@
                     </li>
                 </ul>
                 <form class="d-flex" action="autentificare.html">
-                    <button class="btn btn-primary me-2" type="submit" >Autentificare</button>
+                    <button class="btn btn-primary me-2" type="submit">Autentificare</button>
                 </form>
                 <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit">Deconectare</button>
@@ -67,34 +67,113 @@
     </nav>
 
 
+
     <!-- sectiune Search -->
     <div class="container-fluid p-5 my-5 border">
 
-        <p>Cautare produs dupa cod sau nume.</p>
+        <!-- sectiune search si Categorii / toggle switches -->
 
-        <form class="row gy-2 gx-3 align-items-center">
-            <div class="col-auto">
-                <input type="text" class="form-control" id="autoSizingInput" placeholder="Search">
+
+        <div class="row align-items-end">
+            <div class="col-sm-3 ">
+                <form class="row gy-2 gx-3 align-items-center ">
+                    <div class="d-inline-flex">
+                        <input type="text" class="form-control" id="autoSizingInput" placeholder="Search">
+                        <button type="search" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+
+                <div class="input-group mb-3 ">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button class="btn btn-success" type="submit">Go</button>
+                </div>
             </div>
-            <div class="col-auto">
-                <button type="search" class="btn btn-primary">Search</button>
+
+            <div class="col-sm-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="inStockSwitch" name="inStock" value="yes">
+                    <label class="form-check-label" for="inStockSwitch">In stoc</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="bandaLedSwitch" name="bandaLed" value="yes">
+                    <label class="form-check-label" for="bandaLedSwitch">Banda LED</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="driversSwitch" name="drivers" value="yes">
+                    <label class="form-check-label" for="driversSwitch">Alimentatoare</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="profilesSwitch" name="profiles" value="yes">
+                    <label class="form-check-label" for="profilesSwitch">Profiluri</label>
+                </div>
             </div>
-        </form>
+            <div class="col-sm-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="inStockSwitch" name="inStock" value="yes">
+                    <label class="form-check-label" for="inStockSwitch">In stoc</label>
+                </div>
 
-        <!-- sectiune Tabel -->
-        <div class="table-responsive" th:switch="${products}">
-            <h5 th:case="null">Niciun rezultat!</h5>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="bandaLedSwitch" name="bandaLed" value="yes">
+                    <label class="form-check-label" for="bandaLedSwitch">Banda LED</label>
+                </div>
 
-            <div th:case="*">
-                <h5>Produse</h5>
-                <table class="table table-sm table-hover">
-                    <thead class="table-light">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="driversSwitch" name="drivers" value="yes">
+                    <label class="form-check-label" for="driversSwitch">Alimentatoare</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="profilesSwitch" name="profiles" value="yes">
+                    <label class="form-check-label" for="profilesSwitch">Profiluri</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="inStockSwitch" name="inStock" value="yes">
+                    <label class="form-check-label" for="inStockSwitch">In stoc</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="bandaLedSwitch" name="bandaLed" value="yes">
+                    <label class="form-check-label" for="bandaLedSwitch">Banda LED</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="driversSwitch" name="drivers" value="yes">
+                    <label class="form-check-label" for="driversSwitch">Alimentatoare</label>
+                </div>
+
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="profilesSwitch" name="profiles" value="yes">
+                    <label class="form-check-label" for="profilesSwitch">Profiluri</label>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+    <!-- sectiune Tabel -->
+    <div class="table-responsive" th:switch="${products}">
+        <h5 th:case="null">Niciun rezultat!</h5>
+
+        <div th:case="*">
+            <h5>Produse</h5>
+            <table class="table table-sm table-hover">
+                <thead class="table-light">
                     <tr>
                         <th>Cod</th>
                         <th>Nume Produs</th>
                         <th>Pret Euro</th>
                         <th>Imagini</th> <!-- link -->
-                        <th>Stoc real</th>
+                        <th>Stoc</th>
                         <th>Stoc disponibil</th>
                         <th>Rezervari</th>
                         <th>Furnizor</th>
@@ -102,8 +181,8 @@
                         <th>Editare</th>
                         <th>Stergere</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     <tr th:each="product : ${products}">
                         <td th:text="${product.code}"></td>
                         <td th:text="${product.name}"></td>
@@ -121,25 +200,25 @@
 
                             <button class="btn" type="submit" data-bs-toggle="tooltip" title="Editare">
                                 <a th:href="@{/edit/{id}(id=${product.id})}">
-                                <i class="bi-pen" style="font-size: 1.1rem; color: blue;" role="img"
-                                aria-label="Editare"></i>
+                                    <i class="bi-pen" style="font-size: 1.1rem; color: blue;" role="img"
+                                        aria-label="Editare"></i>
                                 </a>
                             </button>
 
                         </td>
 
                         <td> <button class="btn" type="submit" data-bs-toggle="tooltip" title="Stergere"> <i
-                                class="bi-trash" style="font-size: 1.1rem; color: red;" role="img"
-                                aria-label="Stergere"></i> </button> </td>
+                                    class="bi-trash" style="font-size: 1.1rem; color: red;" role="img"
+                                    aria-label="Stergere"></i> </button> </td>
                         <!-- varianta ok, cu text
                         <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
                          -->
                     </tr>
-                    </tbody>
-                </table>
-            </div>
-
+                </tbody>
+            </table>
         </div>
+
+    </div>
 
 
 

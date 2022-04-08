@@ -14,7 +14,7 @@ public class MainController {
     private ProductService productService;
 
 
-    @GetMapping("/index")
+    @GetMapping({"/", "/index"})
     public String showHomePage(Model model){
         model.addAttribute("produse", productService.findAll());
         return "index";

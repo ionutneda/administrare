@@ -1,6 +1,5 @@
 package com.luminna.administrare.service;
 
-import com.luminna.administrare.entity.Product;
 import com.luminna.administrare.entity.User;
 import com.luminna.administrare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

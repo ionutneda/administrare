@@ -1,8 +1,5 @@
 package com.luminna.administrare.repository;
 
-import com.luminna.administrare.entity.Product;
-import com.luminna.administrare.entity.Provider;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

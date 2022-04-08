@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -62,56 +62,59 @@
 
   <h4>Adaugare produs nou</h4>
   
-  <form action="#" class="was-validated">
-  
+  <form action="#" class="was-validated" th:action="@{/add-product}" th:object="${product}" method="post">
+
+      <!-- cod -->
     <div class="form-floating mb-3 mt-3">
-      <input type="cod_produs" class="form-control" id="cod_produs" placeholder="cod_produs" name="cod_produs required">
+      <input type="cod_produs" class="form-control" th:field="*{cod_produs}" id="cod_produs" placeholder="cod_produs" name="cod_produs" required>
+        <span th:if="${#fields.hasErrors('cod_produs')}" th:errors="*{cod_produs}"></span>
       <label for="cod_produs">Cod produs:</label>
         <div class="invalid-feedback">Campul trebuie completat.</div>
     </div>
-    
+
+      <!-- nume produs -->
     <div class="form-floating mb-3">
-      <input type="nume_produs" class="form-control" id="nume_produs" placeholder="nume_produs" name="nume_produs required">
+      <input type="nume_produs" class="form-control" th:field="*{nume_produs}" id="nume_produs" placeholder="nume_produs" name="nume_produs" required>
+        <span th:if="${#fields.hasErrors('nume_produs')}" th:errors="*{nume_produs}"></span>
       <label for="nume_produs">Nume produs:</label>
         <div class="invalid-feedback">Campul trebuie completat.</div>
     </div>
-    
+
+      <!-- pret produs -->
         <div class="form-floating mb-3">
-      <input type="pret" class="form-control" id="pret" placeholder="pret" name="pret required">
+      <input type="pret" class="form-control" th:field="*{pret}" id="pret" placeholder="pret" name="pret" required>
+            <span th:if="${#fields.hasErrors('pret')}" th:errors="*{pret}"></span>
       <label for="pret">Pret:</label>
         <div class="invalid-feedback">Campul trebuie completat.</div>
     </div>
-    
-        <div class="form-floating mb-3">
-      <select type="moneda" class="form-control" id="moneda" placeholder="moneda" name="moneda required">
-        <option>Euro</option>
-        <option>Lei</option>
-    </select> 
-      <label for="moneda">Moneda:</label>
-        <div class="invalid-feedback">Campul trebuie completat.</div>
-    </div>
-    
+
+      <!-- imagini produs -->
     <div class="mb-3">
     <label for="formFileMultiple" class="form-label">Imagini</label>
     <input class="form-control" type="file" id="formFileMultiple" placeholder="imagini" name="imagini" multiple>
     </div>
-    
+
+      <!-- stoc -->
+      <div class="form-floating mb-3">
+          <input type="stoc" class="form-control" th:field="*{stoc}" id="stoc" placeholder="stoc" name="stoc">
+          <span th:if="${#fields.hasErrors('pret')}" th:errors="*{pret}"></span>
+          <label for="stoc">Stoc:</label>
+      </div>
+
+      <!-- furnizor -->
     <div class="form-floating mb-3">
-     <select type="furnizor" class="form-select" id="furnizor" placeholder="furnizor" name="furnizor required">
+     <select type="furnizor" class="form-select" th:field="*{furnizor}" id="furnizor" placeholder="furnizor" name="furnizor" required>
   <option>1 Furnizor 1</option>
   <option>2 Furnizor 2</option>
   <option>3 Furnizor 3</option>
   <option>Luminna Furnizor 4</option>
-</select> 
+</select>
+        <span th:if="${#fields.hasErrors('furnizor')}" th:errors="*{furnizor}"></span>
 <label for="furnizor">Furnizor:</label>
         <div class="invalid-feedback">Campul trebuie completat.</div>
     </div>
-    
-        <div class="form-floating mb-3">
-      <input type="stoc" class="form-control" id="stoc" placeholder="stoc" name="stoc">
-      <label for="stoc">Stoc:</label>
-    </div>
-    
+
+      <!-- submit -->
     <button type="submit" class="btn btn-primary">Salvare</button>
   </form>
   
