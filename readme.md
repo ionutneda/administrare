@@ -67,6 +67,12 @@ reservations and creating proposal drafts. Using these features would bring an e
   - update-user.html
   - adaugare_produs.html (add product)
 
+### Initial schema diagram
+
+<img alt="Screenshot" src="administrare_db_diagram.png"/>
+![](src/main/resources/static/pics/administrare_db_diagram.png)
+![picture](src/main/resources/static/pics/administrare-db-diagram-jpg-1.JPG)
+
 ### TODO
 - [ ] Finish the views;
 - [ ] Wire the controllers to the views;
