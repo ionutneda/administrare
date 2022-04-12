@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+    <!-- Navbar fragment -->
+    <nav th:replace="fragments :: nav"></nav>
+
+
+
+    <!-- sectiune Tabel -->
+    <div class="table-responsive" th:switch="${users}">
+        <h5 th:case="null">Niciun rezultat!</h5>
+
+        <div th:case="*">
+            <h5>Utilizatori</h5>
+            <table class="table table-sm table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th >Id</th>
+                        <th >Nume</th>
+                        <th >Prenume</th>
+                        <th >Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">id</td>
+                        <td th:text="${user.lastName}">Nume</td>
+                        <td th:text="${user.firstName}">Prenume</td>
+                        <td th:text="${user.email}">ofertare@luminna.ro</td>
+
+                        <!-- to verify -->
+
+                        <td>
+
+                            <button class="btn" type="submit" data-bs-toggle="tooltip" title="Editare">
+                                <a th:href="@{/user/edit/{id}(id=${user.id})}">
+                                    <i class="bi-pen" style="font-size: 1.1rem; color: blue;" role="img"
+                                        aria-label="Editare"></i>
+                                </a>
+                            </button>
+                        </td>
+
+                        <td>
+                            <button class="btn" type="submit" data-bs-toggle="tooltip" title="Stergere">
+                            <i class="bi-trash" style="font-size: 1.1rem; color: red;" role="img"
+                                aria-label="Stergere"></i>
+                            </button>
+                        </td>
+                        <!-- varianta ok, cu text
+                        <td><a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a></td>
+                         -->
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <!-- footer fragment-->
+    <div th:replace="fragments :: footer"></div>
+
+
+</body>
+
+</html>

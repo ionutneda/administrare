@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-// @RequestMapping("/autentificare")
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
@@ -19,18 +19,25 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    // signup/add user/inregistrare links
-    @GetMapping("/inregistrare")
-    public String showSignUpForm(User user){
-        return "add-user";
+    // inregistrare form
+    @GetMapping("add")
+    public String showSignUpForm(){
+        return "user/add";
     }
 
     // add user method
-    @PostMapping("/adduser")
+    @PostMapping("/add")
     public String addUser(@Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {return "add-user";}
+        if (result.hasErrors()) {return "user/add";}
         userService.save(user);
         return "redirect:/index";
+    }
+
+    // view list of users
+    @GetMapping("")
+    public String showUserList(Model model){
+        model.addAttribute("users", userService.findAll());
+        return "user/list";
     }
 
     // update user view
@@ -40,16 +47,16 @@ public class UserController {
         User user = userRepository.findById(id)     // instead of userRepo should be userService, but wouldn't allow .orElseThrow method
                 .orElseThrow(() -> new IllegalArgumentException("Id user invalid: "+ id));
         model.addAttribute("user", user);
-        return "update-user";
+        return "user/update";
     }
 
     // update method
-    @PostMapping("/modificare/{id}")
+    @PostMapping("/edit/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user,
         BindingResult result, Model model) {
         if (result.hasErrors()){
             user.setId(id);
-            return "update-user";
+            return "user/update";
         }
         userService.save(user);
         return "redirect:/index";

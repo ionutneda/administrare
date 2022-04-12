@@ -5,10 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-
-//TODO
-// include a builder pattern constructor
+import java.math.BigDecimal;
 
 
 @Entity
@@ -41,31 +38,55 @@ public class Product {
     private String name;
 
     @NotBlank(message = "Pretul este obligatoriu.")
-    private Long price;   // need to use Decimal if I want to process it further
+    private BigDecimal price;
+
+    // this brings the whole provider object / I just need the provider's id
+//    @NotBlank(message = "Producatorul este obligatoriu.")
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "provider_id",
+//            referencedColumnName ="providerId")
+//    private Provider provider;
+
+    // trying to get the provider's id only
+    @JoinColumn(name = "provider_id", insertable=false, updatable=false)
+    @ManyToOne(targetEntity = Provider.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Provider provider;
 
     @NotBlank(message = "Producatorul este obligatoriu.")
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "provider_id",
-            referencedColumnName ="providerId")
-    private Provider provider; // Here I might only need the provider Id
+    @Column(name="provider_id")
+    private Long providerId;
 
-    @ManyToOne
-    // @NotNull(message = "Categoria este obligatorie.") // this might not be the case
+    // trying to get the category's id only
+    @JoinColumn(name = "product_category_id", insertable=false, updatable=false)
+    @ManyToOne(targetEntity = ProductCategory.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ProductCategory productCategory;
-    
-    // Optional TODO
-    // private Boolean inStock;
-    // private int quantityInStock;
-    // private List<String> images;
-    // private String dimensions;
-    // private int weight;
+
+    @Column(name="product_category_id")
+    private Long categoryId;
+
+    @Transient
+    private Boolean inStock;
+
+    private int stock;  //quantity in stock
+
+    @Transient
+    private int availableStock;  //quantity available after reservations
+
+    private String image;   // todo -  needs to be a list
+    private String dimensions;
+    private double weight;
 
 
-    public Product(String code, String name, Long price, Provider provider, ProductCategory productCategory) {
+    public Product(String code, String name, BigDecimal price, Long providerId,
+                   Long categoryId, int stock, String image, String dimensions, double weight) {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.provider = provider;
-        this.productCategory = productCategory;
+        this.providerId = providerId;
+        this.categoryId = categoryId;
+        this.stock = stock;
+        this.image = image;
+        this.dimensions = dimensions;
+        this.weight = weight;
     }
 }

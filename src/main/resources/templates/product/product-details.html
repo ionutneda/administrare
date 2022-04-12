@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<!-- Navbar fragment -->
+<nav th:replace="fragments :: nav"></nav>
+
+
+<!-- container -->
+<div class="container-fluid container-sm p-5 my-5 border align-center">
+
+    <h4 th:text="${title}">Titlu</h4>
+
+    <span>Cod: </span><span th:text="${product.cod}"></span>
+    <span>Nume Produs: </span><span th:text="${product.name}"></span>
+    <span>Pret Euro: </span><span th:text="${product.price}"></span>
+    <span>Imagini: </span><span th:text="${product.image}"></span>
+    <span>Stoc: </span><span th:text="${product.stock}"></span>
+    <span>Stoc disponibil: </span><span th:text="${product.stock}"></span>
+
+</div>
+
+
+<!-- footer fragment-->
+<div th:replace="fragments :: footer"></div>
+
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,30 +18,32 @@ public class Proposal {
 
     @Id
     @SequenceGenerator(
-            name = "reservation_sequence_generator",
-            sequenceName = "reservation_sequence",
+            name = "proposal_sequence_generator",
+            sequenceName = "proposal_sequence",
             allocationSize = 1)
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "reservation_sequence_generator")
+            generator = "proposal_sequence_generator")
     private long id;
 
-    private LocalDateTime creationDate = LocalDateTime.now();  // automated
+    private LocalDateTime creationDate;
 
-    private String details;  // customer's name
-
-    private User editor;  // owner, TODO foreign key
-
-    private User contact;  // sales person's name, TODO foreign key
+    private String details;  // customer's name and sales person's name
 
 
-    private List<ProposalItem> proposalItems;
+    @JoinColumn(name = "user_id", insertable=false, updatable=false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private User editor;
 
-    public Proposal(String details, User editor, User contact, List<ProposalItem> proposalItems) {
+    @Column(name="user_id")
+    private Long userID;
+
+    // todo - proposal items
+
+    public Proposal(String details, User editor) {
         this.details = details;
         this.editor = editor;  // TODO I think I can insert the user with a session method
-        this.contact = contact;
-        this.proposalItems = proposalItems;
+        this.creationDate = LocalDateTime.now();
     }
 
 }

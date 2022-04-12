@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+<!-- Navbar fragment -->
+<nav th:replace="fragments :: nav"></nav>
+
+
+<!-- container -->
+<div class="container-fluid container-sm p-5 my-5 border align-center">
+
+    <h4 th:text="${title}">Titlu</h4>
+
+    <form action="#" th:action="@{/product/add}"
+          th:object="${product}" method="post"> <!--class="was-validated"-->
+
+        <!-- cod -->
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control"
+                   th:field="*{code}" id="code" placeholder="cod" name="code" required>
+            <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+            <label for="code">Cod produs:</label>
+            <div class="invalid-feedback">Campul trebuie completat.</div>
+        </div>
+
+        <!-- nume produs -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="nume" name="name"
+                   required>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <label for="name">Nume produs:</label>
+            <div class="invalid-feedback">Campul trebuie completat.</div>
+        </div>
+
+        <!-- pret produs -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{price}" id="price" placeholder="pret euro" name="price"
+                   required>
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+            <label for="price">Pret Euro:</label>
+            <div class="invalid-feedback">Campul trebuie completat.</div>
+        </div>
+
+        <!-- imagini produs -->
+<!--        <div class="mb-3">-->
+<!--            <label for="formFileMultiple" class="form-label">Imagine</label>-->
+<!--            <input class="form-control" type="file" id="formFileMultiple" placeholder="imagine" name="image" multiple-->
+<!--                   th:field="*{image}">-->
+<!--        </div>-->
+
+        <!-- imagine / mock -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{image}" id="image" placeholder="imagine" name="image"
+                   required>
+            <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+            <label for="image">Imagine:</label>
+        </div>
+
+        <!-- stoc -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{stock}" id="stock" placeholder="stoc" name="stock">
+            <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
+            <label for="stock">Stoc:</label>
+        </div>
+
+        <!-- stoc disponibil-->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{stock}" id="availableStock" placeholder="stoc disponibil" name="availableStock">
+            <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
+            <label for="availableStock">Stoc disponibil:</label>
+        </div>
+
+        <!-- furnizor  ** dropdown ** -->
+<!--        <div class="form-floating mb-3">-->
+<!--            <select type="" class="form-select"-->
+<!--                    th:field="*{provider.id}" id="dropDownList" placeholder="furnizor" name="provider" required>-->
+<!--                <option value="0">selecteaza provider</option>-->
+<!--                <option th:each="provider : ${providers}"-->
+<!--                        th:value="${provider.id}"-->
+<!--                        th:text="${provider.name}"></option>-->
+<!--            </select>-->
+<!--            <span th:if="${#fields.hasErrors('provider')}" th:errors="*{provider}"></span>-->
+<!--            <label for="dropDownList">Furnizor:</label>-->
+<!--            <div class="invalid-feedback">Campul trebuie completat.</div>-->
+<!--        </div>-->
+
+        <!-- stoc furnizor // temporar -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{provider}" id="providerId" placeholder="cod furnizor" name="providerId">
+            <span th:if="${#fields.hasErrors('provider')}" th:errors="*{provider}"></span>
+            <label for="providerId">Cod furnizor:</label>
+        </div>
+
+        <!-- submit -->
+        <button type="submit" class="btn btn-primary">Salveaza</button>
+    </form>
+
+
+</div>
+
+
+<!-- footer fragment-->
+<div th:replace="fragments :: footer"></div>
+
+
+</body>
+</html>

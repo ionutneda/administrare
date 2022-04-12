@@ -43,35 +43,79 @@ reservations and creating proposal drafts. Using these features would bring an e
 - access and view a statistics page without login;
 
 
-### Work in  progress
-- Entity classes
-  - User
-  - Product
-  - Provider
-- Service classes
-  - UserService
-  - ProductService
-  - ProviderService
-- Repository classes
-  - UsertRepo
-  - ProductRepo
-  - ProviderRepo
-- Controller classes
-  - MainController
-  - UserController
-  - ProductController
-- Resources - static
-  - autentificare.html (login/signup)
-  - index.html (acasa/home)
-  - add-user.html
-  - update-user.html
-  - adaugare_produs.html (add product)
-
 ### Initial schema diagram
 
 <img alt="Screenshot" src="administrare_db_diagram.png"/>
-![](src/main/resources/static/pics/administrare_db_diagram.png)
-![picture](src/main/resources/static/pics/administrare-db-diagram-jpg-1.JPG)
+
+
+### Progress tree
+
+```aidl
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
+├── readme.md
+└── src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── luminna
+│   │           └── administrare
+│   │               ├── AdministrareApplication.java
+│   │               ├── controller
+│   │               │   ├── MainController.java
+│   │               │   ├── ProductCategoryController.java
+│   │               │   ├── ProductController.java
+│   │               │   ├── ProposalController.java
+│   │               │   ├── ProviderController.java
+│   │               │   ├── ReservationController.java
+│   │               │   └── UserController.java
+│   │               ├── entity
+│   │               │   ├── ProductCategory.java
+│   │               │   ├── Product.java
+│   │               │   ├── ProposalItem.java
+│   │               │   ├── Proposal.java
+│   │               │   ├── Provider.java
+│   │               │   ├── ReservationItem.java
+│   │               │   ├── Reservation.java
+│   │               │   └── User.java
+│   │               ├── repository
+│   │               │   ├── ProductCategoryRepository.java
+│   │               │   ├── ProductRepository.java
+│   │               │   ├── ProposalRepository.java
+│   │               │   ├── ProviderRepository.java
+│   │               │   ├── ReservationRepository.java
+│   │               │   └── UserRepository.java
+│   │               └── service
+│   │                   ├── ProductCategoryService.java
+│   │                   ├── ProductService.java
+│   │                   ├── ProposalService.java
+│   │                   ├── ProviderService.java
+│   │                   ├── ReservationService.java
+│   │                   └── UserService.java
+│   └── resources
+│       ├── application.properties
+│       ├── static
+│       │   └── pics
+│       │       └── administrare_db_diagram.png
+│       └── templates
+│           ├── add-product.html
+│           ├── add-user.html
+│           ├── autentificare.html
+│           ├── index.html
+│           └── update-user.html
+└── test
+    └── java
+        └── com
+            └── luminna
+                └── administrare
+                    ├── AdministrareApplicationTests.java
+                    └── repository
+                        ├── ProductRepositoryTest.java
+                        └── ProviderRepositoryTest.java
+
+```
+
 
 ### TODO
 - [ ] Finish the views;
@@ -81,7 +125,7 @@ reservations and creating proposal drafts. Using these features would bring an e
 - [ ] **Optional - Implement the **Proposal draft** (id, title, user, creation date, list of products) with export in 
 Excel file;
 - [ ] Implement Security/login feature;
-- [ ] Make proper Unit tests;
+- [ ] Implement proper Unit tests;
 - [ ] Implement the **Pictures** feature; 
 - [ ] Implement Pagination;
 - [ ] Handle the Exceptions;
@@ -90,6 +134,7 @@ Excel file;
 
 ### Issues
 - I was able to create a product with the HTTP POST method by including the provider details in the product's body.
-However, I need to be able to just reference the provider with its ID. It wouldn't allow adding another product with
-the same provider (the provider should be unique). 
+However, I need to be able to just reference the provider with its ID. The provider object does not allow adding another product with
+the same provider ID (the provider has a unique constraint). 
+  - I've found out I should reference the provider's ID only.
 - 

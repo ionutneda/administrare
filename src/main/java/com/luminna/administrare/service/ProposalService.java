@@ -1,19 +1,16 @@
 package com.luminna.administrare.service;
 
-import com.luminna.administrare.repository.ProposalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.luminna.administrare.entity.Product;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 @Service
-public class ProposalService {
-
-    @Autowired
-    ProposalRepository proposalRepository;
-
-    // find all
-    // find by id
-    // save
-    // edit
-    // delete
-
+public interface ProposalService {
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    void clearProducts();
+    Map<Product, Integer> productsInProposal();
+    BigDecimal totalPrice();
 }

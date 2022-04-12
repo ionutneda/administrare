@@ -3,6 +3,7 @@ package com.luminna.administrare.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Entity
@@ -24,10 +25,12 @@ public class Provider{
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "provider_sequence_generator")
-    private Long providerId;
+    private Long id;
 
-    @Column(unique = true)
+    @NotBlank(message = "Numele este obligatoriu.")
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+
     private Double discount; //percentage
     private int deliveryTerm;  //weeks
     private String country;

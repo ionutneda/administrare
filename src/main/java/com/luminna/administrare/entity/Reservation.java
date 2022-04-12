@@ -1,11 +1,11 @@
 package com.luminna.administrare.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -25,36 +25,43 @@ public class Reservation implements Serializable {
             generator = "reservation_sequence_generator")
     private long id;
 
-    private LocalDateTime creationDate = LocalDateTime.now();  // automated
+    @JsonFormat(pattern = "dd/MM/yyy")
+    private LocalDate creationDate;  // automated
 
     private int noOfDaysToBeActive; // the number of days to keep the reservation
 
-    // it conflicts with @Builder if it's not included in the constructor
-    // calculated; the user have to specify the number of days which will be added to the creation date.
-    private LocalDateTime expirationDate = creationDate.plusDays(this.noOfDaysToBeActive);
+    private LocalDate expirationDate;
 
+    @Transient
     private Boolean old;  // true if Date is past expirationDate // TODO maybe I can use @Scheduled
 
     private String details;  // customer's name
 
-    private List<ReservationItem> reservationItems;
 
-    private User editor;  // TODO foreign key
+    // todo - reservation items list
 
 
-    public Reservation(int noOfDaysToBeActive, String details, List<ReservationItem> reservationItems, User editor) {
+    // trying to get the editor's's id only
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private User editor;
+
+    @Column(name = "user_id")
+    private Long userID;
+
+
+    public Reservation(int noOfDaysToBeActive, String details, User editor) {
         this.noOfDaysToBeActive = noOfDaysToBeActive;
         this.details = details;
-        this.reservationItems = reservationItems;
+        this.creationDate = LocalDate.now();
         this.editor = editor;
-    }
-
-    public void setOld(){
-
-        if (LocalDateTime.now().isAfter(expirationDate)){
+        this.expirationDate = creationDate.plusDays(this.noOfDaysToBeActive);
+        if (LocalDate.now().isAfter(expirationDate)) {
             this.old = true;
+        } else {
+            this.old = false;
         }
-        else this.old = false;
     }
+
 
 }
