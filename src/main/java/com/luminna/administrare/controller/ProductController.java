@@ -2,6 +2,7 @@ package com.luminna.administrare.controller;
 
 import com.luminna.administrare.entity.Product;
 import com.luminna.administrare.entity.Provider;
+import com.luminna.administrare.service.CategoryService;
 import com.luminna.administrare.service.ProductService;
 import com.luminna.administrare.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,10 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
     private ProviderService providerService;
+    @Autowired
+    private CategoryService categoryService;
 
 
     // search items by id from the home page
@@ -46,18 +50,18 @@ public class ProductController {
         model.addAttribute("title", "adaugare produs");
         Product product = new Product();
         model.addAttribute("product", product);
+        model.addAttribute("providers", providerService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "product/add";
     }
 
 
     // post / save one product method
     @PostMapping("product/add")
-    public String processAddProductForm(@Valid Product product,
-                                        BindingResult result, Model model) {
+    public String processAddProductForm(@Valid Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/product/add";
         }
-
         productService.save(product);
         return "product/product-details"; // todo - I want to return the product page
     }

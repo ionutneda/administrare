@@ -74,24 +74,29 @@
         </div>
 
         <!-- furnizor  ** dropdown ** -->
-<!--        <div class="form-floating mb-3">-->
-<!--            <select type="" class="form-select"-->
-<!--                    th:field="*{provider.id}" id="dropDownList" placeholder="furnizor" name="provider" required>-->
-<!--                <option value="0">selecteaza provider</option>-->
-<!--                <option th:each="provider : ${providers}"-->
-<!--                        th:value="${provider.id}"-->
-<!--                        th:text="${provider.name}"></option>-->
-<!--            </select>-->
-<!--            <span th:if="${#fields.hasErrors('provider')}" th:errors="*{provider}"></span>-->
-<!--            <label for="dropDownList">Furnizor:</label>-->
-<!--            <div class="invalid-feedback">Campul trebuie completat.</div>-->
-<!--        </div>-->
-
-        <!-- stoc furnizor // temporar -->
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" th:field="*{provider}" id="providerId" placeholder="cod furnizor" name="providerId">
+            <select type="" class="form-select"
+                    th:field="*{provider}" id="providerDropDown" placeholder="furnizor" name="provider" required>
+                <option th:each="provider : ${providers}"
+                        th:value="${provider}"
+                        th:text="${provider.name}"></option>
+            </select>
             <span th:if="${#fields.hasErrors('provider')}" th:errors="*{provider}"></span>
-            <label for="providerId">Cod furnizor:</label>
+            <label for="providerDropDown">Furnizor:</label>
+            <div class="invalid-feedback">Campul trebuie completat.</div>
+        </div>
+
+        <!-- categorie produs  ** dropdown ** -->
+        <div class="form-floating mb-3">
+            <select type="" class="form-select"
+                    th:field="*{category}" id="categoryDropDown" placeholder="categorie" name="category" required>
+                <option th:each="category : ${categories}"
+                        th:value="${category}"
+                        th:text="${category.name}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+            <label for="categoryDropDown">Categorie produs:</label>
+            <div class="invalid-feedback">Campul trebuie completat.</div>
         </div>
 
         <!-- submit -->

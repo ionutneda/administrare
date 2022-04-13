@@ -71,5 +71,5 @@ Excel file;
 - I was able to create a product with the HTTP POST method by including the provider details in the product's body.
 However, I need to be able to just reference the provider with its ID. The provider object does not allow adding another product with
 the same provider ID (the provider has a unique constraint). 
-  - I've found out I should reference the provider's ID only.
+  - I've found out I should reference the provider's ID only. >> solved
 - 

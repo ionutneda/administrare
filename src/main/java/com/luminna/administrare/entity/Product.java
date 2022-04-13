@@ -40,13 +40,6 @@ public class Product {
     @NotBlank(message = "Pretul este obligatoriu.")
     private BigDecimal price;
 
-    // this brings the whole provider object / I just need the provider's id
-//    @NotBlank(message = "Producatorul este obligatoriu.")
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "provider_id",
-//            referencedColumnName ="providerId")
-//    private Provider provider;
-
     // trying to get the provider's id only
     @JoinColumn(name = "provider_id", insertable=false, updatable=false)
     @ManyToOne(targetEntity = Provider.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -57,11 +50,11 @@ public class Product {
     private Long providerId;
 
     // trying to get the category's id only
-    @JoinColumn(name = "product_category_id", insertable=false, updatable=false)
-    @ManyToOne(targetEntity = ProductCategory.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private ProductCategory productCategory;
+    @JoinColumn(name = "category_id", insertable=false, updatable=false)
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Category category;
 
-    @Column(name="product_category_id")
+    @Column(name="category_id")
     private Long categoryId;
 
     @Transient

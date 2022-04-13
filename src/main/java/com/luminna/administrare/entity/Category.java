@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
-public class ProductCategory {
+public class Category {
 
 
     @Id
@@ -22,9 +22,9 @@ public class ProductCategory {
     private String name;
 
 
-    public ProductCategory() {}
+    public Category() {}
 
-    public ProductCategory(String name) {
+    public Category(String name) {
         this.name = name;
     }
 
