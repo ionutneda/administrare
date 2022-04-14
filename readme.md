@@ -8,7 +8,7 @@ and Thymeleaf with Bootstrap for the frontend.
 
 
 ## Purpose & context
-The app should provide the users with easy access to centralized information about to the inventory, providers, 
+The app should provide the users with easy access to centralized information about the inventory, providers, 
 delivery terms and other related data. The main usage would be searching for the prices which are currently stored
 in more than 100 tables in different formats. The next ones would be searching the available stock, making stock 
 reservations and creating proposal drafts. Using these features would bring an estimate of 25% raise in productivity.
@@ -27,12 +27,12 @@ reservations and creating proposal drafts. Using these features would bring an e
 - **optional - access and use the "Calculator profile" (profiles calculator) page;
 
 ###### When the user {is loged in}, should be able to:
-- edit/delete a record from the "Acasa" page view when logged in;
-- access the page "Adaugare" to add products or providers when logged in;
-- add/edit/remove reservations when logged in;
+- edit/delete a record from the "Acasa" page view;
+- access the page "Adaugare" to add products or providers;
+- add/edit/remove reservations;
 - receive reminders by email when reservations expire;
 - create and export proposal draft;
-- upload tables to database;
+- upload tables to the database;
 - add/modify categories;
 - add/modify users and assign roles as an administrator;
 - view and export the logs as an administrator;
@@ -48,8 +48,14 @@ reservations and creating proposal drafts. Using these features would bring an e
 <img alt="Screenshot" src="administrare_db_diagram.png"/>
 
 
-### Progress tree
+### Progress
 
+Until now, I've managed to implement:
+- [x] the necessary classes for entities, repositories, services and controllers;
+- [x] one to many relationships between product and category and between product and provider;
+- [x] populate dropdown fields with lists of items (category and provider)from database
+- [x] drafts of a few .html templates(index, product details, product add, signup and login);
+- [x] a persistent H2 test database;
 
 
 ### TODO
