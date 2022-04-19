@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @ToString
-//@Builder
-public class Reservation implements Serializable {
+@Table(name = "reservation")
+public class Reservation {
 
     @Id
     @SequenceGenerator(
@@ -28,8 +28,9 @@ public class Reservation implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDate creationDate;  // automated
 
-    private int noOfDaysToBeActive; // the number of days to keep the reservation
+    private int activePeriod; // the number of days to keep the reservation
 
+    @JsonFormat(pattern = "dd/MM/yyy")
     private LocalDate expirationDate;
 
     @Transient
@@ -47,21 +48,24 @@ public class Reservation implements Serializable {
     private User editor;
 
     @Column(name = "user_id")
-    private Long userID;
+    private Long editorId;
 
 
-    public Reservation(int noOfDaysToBeActive, String details, User editor) {
-        this.noOfDaysToBeActive = noOfDaysToBeActive;
+    public Reservation(int activePeriod, String details, Long editorId) {
+        this.activePeriod = activePeriod;
         this.details = details;
         this.creationDate = LocalDate.now();
-        this.editor = editor;
-        this.expirationDate = creationDate.plusDays(this.noOfDaysToBeActive);
+        this.editorId = editorId;
+        this.expirationDate = creationDate.plusDays(this.activePeriod);
+        this.old = false;
+    }
+
+    public Boolean getOld() {
         if (LocalDate.now().isAfter(expirationDate)) {
             this.old = true;
         } else {
             this.old = false;
         }
+        return old;
     }
-
-
 }

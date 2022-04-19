@@ -1,0 +1,4 @@
+id,category_id,code,dimensions,image,name,price,provider_id,stock,weight
+1,2,eclipse-9IN,13x13,image,eclipse red,135.2,2,6,1
+2,1,ring-ch-wh,3x5,image,ring incastrat alb ch,17,2,200,0.3
+3,1,ring-ch-bk,3x5,image,ring incastrat negru ch,17,2,80,0.3

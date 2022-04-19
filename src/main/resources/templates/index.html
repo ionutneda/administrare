@@ -96,7 +96,8 @@
 
 </div>
 
-<p>Produse</p>
+<p>Produse:</p>
+<p th:unless="${products} and ${products.size()}">Nici un rezultat.</p>
 <!-- sectiune Tabel -->
 <div class="table-responsive">
     <div>
@@ -126,7 +127,7 @@
                 <td th:text="${product.stock}">16</td>
                 <td th:text="${product.stock}">10</td>
                 <!--   <td th:text="${product.reservations}">link</td>-->
-                <td th:text="${product.providerId}">provider</td>
+                <td th:text="${product.provider.name}">provider</td>
                 <!--   <td th:text="${product.providerId.deliveryTerm}">3 saptamani</td>-->
 <!--                <a th:href=@"{/product/{id}(id=${product.id}"> detalii </a>-->
 

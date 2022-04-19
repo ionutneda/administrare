@@ -44,20 +44,6 @@
             <div class="invalid-feedback">Campul trebuie completat.</div>
         </div>
 
-        <!-- imagini produs -->
-<!--        <div class="mb-3">-->
-<!--            <label for="formFileMultiple" class="form-label">Imagine</label>-->
-<!--            <input class="form-control" type="file" id="formFileMultiple" placeholder="imagine" name="image" multiple-->
-<!--                   th:field="*{image}">-->
-<!--        </div>-->
-
-        <!-- imagine / mock -->
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" th:field="*{image}" id="image" placeholder="imagine" name="image"
-                   required>
-            <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
-            <label for="image">Imagine:</label>
-        </div>
 
         <!-- stoc -->
         <div class="form-floating mb-3">
@@ -66,19 +52,41 @@
             <label for="stock">Stoc:</label>
         </div>
 
-        <!-- stoc disponibil-->
+        <!-- imagini produs -->
+        <!--        <div class="mb-3">-->
+        <!--            <label for="formFileMultiple" class="form-label">Imagine</label>-->
+        <!--            <input class="form-control" type="file" id="formFileMultiple" placeholder="imagine" name="image" multiple-->
+        <!--                   th:field="*{image}">-->
+        <!--        </div>-->
+
+        <!-- imagine / mock -->
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" th:field="*{stock}" id="availableStock" placeholder="stoc disponibil" name="availableStock">
-            <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
-            <label for="availableStock">Stoc disponibil:</label>
+            <input type="text" class="form-control" th:field="*{image}" id="image" placeholder="imagine" name="image"
+                   >
+            <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+            <label for="image">Imagine:</label>
+        </div>
+
+        <!-- dimensiuni -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{dimensions}" id="dimensions" placeholder="dimensiuni" name="dimensions">
+            <span th:if="${#fields.hasErrors('dimensions')}" th:errors="*{dimensions}"></span>
+            <label for="dimensions">Dimensiuni:</label>
+        </div>
+
+        <!-- greutate -->
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" th:field="*{weight}" id="weight" placeholder="greutate" name="weight">
+            <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
+            <label for="weight">Greutate:</label>
         </div>
 
         <!-- furnizor  ** dropdown ** -->
         <div class="form-floating mb-3">
             <select type="" class="form-select"
-                    th:field="*{provider}" id="providerDropDown" placeholder="furnizor" name="provider" required>
+                    th:field="*{providerId}" id="providerDropDown" placeholder="furnizor" name="provider" required>
                 <option th:each="provider : ${providers}"
-                        th:value="${provider}"
+                        th:value="${provider.id}"
                         th:text="${provider.name}"></option>
             </select>
             <span th:if="${#fields.hasErrors('provider')}" th:errors="*{provider}"></span>
@@ -89,9 +97,9 @@
         <!-- categorie produs  ** dropdown ** -->
         <div class="form-floating mb-3">
             <select type="" class="form-select"
-                    th:field="*{category}" id="categoryDropDown" placeholder="categorie" name="category" required>
+                    th:field="*{categoryId}" id="categoryDropDown" placeholder="categorie" name="category">
                 <option th:each="category : ${categories}"
-                        th:value="${category}"
+                        th:value="${category.id}"
                         th:text="${category.name}"></option>
             </select>
             <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>

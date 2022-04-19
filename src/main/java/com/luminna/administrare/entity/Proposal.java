@@ -11,9 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
-@Builder
 public class Proposal {
 
     @Id
@@ -31,18 +29,18 @@ public class Proposal {
     private String details;  // customer's name and sales person's name
 
 
-    @JoinColumn(name = "user_id", insertable=false, updatable=false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User editor;
 
-    @Column(name="user_id")
-    private Long userID;
+    @Column(name = "user_id")
+    private Long editorId;
 
     // todo - proposal items
 
-    public Proposal(String details, User editor) {
+    public Proposal(String details, Long editorId) {
         this.details = details;
-        this.editor = editor;  // TODO I think I can insert the user with a session method
+        this.editorId = editorId;  // TODO I think I can insert the user with a session method
         this.creationDate = LocalDateTime.now();
     }
 

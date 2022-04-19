@@ -12,19 +12,16 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
-@Builder
 @Table(name = "product")
 public class Product {
 
     @Id
-    // Using Sequence generator because I'm using MYSQL db which doesn't include one, and it's the recommended way.
     @SequenceGenerator(
             name = "product_sequence_generator",
             sequenceName = "product_sequence",
             allocationSize = 1)
-    @GeneratedValue (
+    @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "product_sequence_generator")
     private Long Id;
@@ -41,20 +38,20 @@ public class Product {
     private BigDecimal price;
 
     // trying to get the provider's id only
-    @JoinColumn(name = "provider_id", insertable=false, updatable=false)
+    @JoinColumn(name = "provider_id", insertable = false, updatable = false)
     @ManyToOne(targetEntity = Provider.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Provider provider;
 
     @NotBlank(message = "Producatorul este obligatoriu.")
-    @Column(name="provider_id")
+    @Column(name = "provider_id")
     private Long providerId;
 
     // trying to get the category's id only
-    @JoinColumn(name = "category_id", insertable=false, updatable=false)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
     @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Category category;
 
-    @Column(name="category_id")
+    @Column(name = "category_id")
     private Long categoryId;
 
     @Transient
@@ -81,5 +78,7 @@ public class Product {
         this.image = image;
         this.dimensions = dimensions;
         this.weight = weight;
+        this.availableStock=stock;
     }
+
 }

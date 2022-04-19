@@ -12,14 +12,83 @@
 <!-- container -->
 <div class="container-fluid container-sm p-5 my-5 border align-center">
 
-    <h4 th:text="${title}">Titlu</h4>
+    <!-- grid -->
+    <div class="row">
+        <div class="col-sm-6">
+            <!-- imagine produs -->
+            <img class="img-fluid" src="#" alt=" "><\br>
+            <span>Imagini: </span><span th:text="${product.image}"></span>
+        </div>
+        <div class="col-sm-6">
+            <!-- tabel detalii produs -->
 
-    <span>Cod: </span><span th:text="${product.cod}"></span>
-    <span>Nume Produs: </span><span th:text="${product.name}"></span>
-    <span>Pret Euro: </span><span th:text="${product.price}"></span>
-    <span>Imagini: </span><span th:text="${product.image}"></span>
-    <span>Stoc: </span><span th:text="${product.stock}"></span>
-    <span>Stoc disponibil: </span><span th:text="${product.stock}"></span>
+            <div class="table-responsive">
+                <div>
+                    <table class="table table-sm table-hover">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Atribut</th>
+                            <th>Valoare</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Cod</td>
+                            <td th:text="${product.code}"></td>
+                        </tr>
+                        <tr>
+                            <td>Nume</td>
+                            <td th:text="${product.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Pret Euro</td>
+                            <td th:text="${product.price}"></td>
+                        </tr>
+                        <tr>
+                            <td>Stoc</td>
+                            <td th:text="${product.stock}"></td>
+                        </tr>
+                        <tr>
+                            <td>Stoc disponibil</td>
+                            <td th:text="${product.availableStock}"></td>
+                        </tr>
+                        <tr>
+                            <td>Dimensiuni</td>
+                            <td th:text="${product.dimensions}"></td>
+                        </tr>
+                        <tr>
+                            <td>Greutate</td>
+                            <td th:text="${product.weight}"></td>
+                        </tr>
+                        <tr>
+                            <td>Categorie</td>
+                            <td th:text="${product.category.name}"></td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Nume furnizor</td>
+                            <td th:text="${product.provider.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Discount furnizor</td>
+                            <td th:text="${product.provider.discount}"></td>
+                        </tr>
+                        <tr>
+                            <td>Termen livrare</td>
+                            <td th:text="${product.provider.deliveryTerm}"></td>
+                        </tr>
+                        <tr>
+                            <td>Tara</td>
+                            <td th:text="${product.provider.country}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

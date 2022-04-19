@@ -10,14 +10,11 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
-@Builder
 @Table(name = "provider")
-public class Provider{
+public class Provider {
 
     @Id
-    // Using Sequence generator because I'm using MYSQL db which doesn't include one, and it's the recommended way.
     @SequenceGenerator(
             name = "provider_sequence_generator",
             sequenceName = "provider_sequence",
