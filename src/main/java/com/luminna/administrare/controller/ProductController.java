@@ -7,15 +7,13 @@ import com.luminna.administrare.service.CategoryService;
 import com.luminna.administrare.service.ProductService;
 import com.luminna.administrare.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -29,15 +27,28 @@ public class ProductController {
     private CategoryService categoryService;
 
 
-    // search items by id from the home page
+    // Index page with a list of all the products with/without keyword (search).
     @GetMapping({"/", "/index", "/home"})
-    public String showProducts(Model model) {
+    public String getAllWithKeyword(Model model, @Param("keyword") String keyword) {
         model.addAttribute("title", "acasa");
-        model.addAttribute("products", productService.findAll());
+        model.addAttribute("products", productService.findByKeyword(keyword));
+        model.addAttribute("keyword", keyword);
         return "index";
     }
 
-    // read one (product details page)
+    // Index page with a list of all the products and a category filter todo - not working
+    @GetMapping({"/{category}", "/index/{category}", "/home/{category}"})
+    public String gettAllWithCategory(Model model,
+                                      @Param("keyword") String keyword,
+                                      @RequestParam("category") String category) {
+        model.addAttribute("title", "acasa");
+        model.addAttribute("products", productService.findAllWithCategory(category));
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("category", category);
+        return "index";
+    }
+
+    // Product details page (find one product, by id).
     @GetMapping("product/{id} ")
     public String showProductDetails(@PathVariable Long id, Model model) {
         model.addAttribute("title", "detalii produs");
@@ -47,8 +58,7 @@ public class ProductController {
         return "product-details";
     }
 
-
-    // add one product link ***
+    // Add product form page
     @GetMapping("product/add")
     public String showAddProductForm(Model model) {
         model.addAttribute("title", "adaugare produs");
@@ -60,8 +70,7 @@ public class ProductController {
         return "product/add";
     }
 
-
-    // post / save one product method
+    // Add / save the product from the add product form.
     @PostMapping("product/add")
     public String processAddProductForm(@Valid Product product,
                                         BindingResult result,
@@ -79,9 +88,14 @@ public class ProductController {
         return "product/product-details"; // todo - I want to return the product page
     }
 
+    // todo post a list of products / batch // reading from a CSV file
 
-    // post a list of products / batch // reading from a CSV file
-
+    // Method to delete product by id.
+    @RequestMapping(value = "/product/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String delete(@PathVariable("id") long id){
+        productService.delete(id);
+        return "redirect:/";
+    }
 
 }
 

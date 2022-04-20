@@ -10,29 +10,31 @@
 
 
 <!-- container Search -->
-<div class="container-fluid p-5 my-5 border">
+<div class="container-fluid p-5 my-2 border-bottom">
 
     <!-- sectiune search si Categorii / toggle switches -->
 
     <div class="row align-items-end">
         <div class="col-sm-3 ">
-            <form class="row gy-2 gx-3 align-items-center ">
-                <div class="d-inline-flex">
-                    <input class="form-control" id="autoSizingInput" placeholder="Search" type="text">
-                    <button class="btn btn-primary" type="search">Search</button>
+
+            <form class="row gy-2 gx-3 align-items-center " th:action="@{/}">
+                <div class="input-group mb-3 ">
+                    <input class="form-control" type="text" name="keyword" id="keyword" placeholder="Search"
+                           th:value="${keyword}">
+                    <button class="btn btn-info" type="submit" data-bs-toggle="tooltip" title="Search">
+                        <i aria-label="Search" class="bi-search" role="img"
+                           style="font-size: 1.1rem; color: yellow;"></i>
+                    </button>
                 </div>
             </form>
-
-            <div class="input-group mb-3 ">
-                <input class="form-control" placeholder="Search" type="text">
-                <button class="btn btn-success" type="submit">Go</button>
-            </div>
         </div>
 
         <div class="col-sm-3">
             <div class="form-check form-switch">
-                <input class="form-check-input" id="inStockSwitch" name="inStock" type="checkbox" value="yes">
-                <label class="form-check-label" for="inStockSwitch">In stoc</label>
+                <form th:action="@{/}" method="get">
+                    <input class="form-check-input" id="spot" name="category" type="checkbox" th:value="${spot}">
+                    <label class="form-check-label" for="spot">Spot</label>
+                </form>
             </div>
 
             <div class="form-check form-switch">
@@ -102,7 +104,7 @@
 <div class="table-responsive">
     <div>
         <table class="table table-sm table-hover">
-            <thead class="table-light">
+            <thead class="table-info">
             <tr>
                 <th>Cod</th>
                 <th>Nume Produs</th>
@@ -113,9 +115,8 @@
                 <!--                        <th >Rezervari</th>-->
                 <th>Furnizor</th>
                 <!--                        <th >Termen</th>-->
-<!--                <th>Detalii</th>-->
-                <th>Editare</th>
-                <th>Stergere</th>
+                <!--                <th>Detalii</th>-->
+                <th>Actiuni</th>
             </tr>
             </thead>
             <tbody>
@@ -129,27 +130,23 @@
                 <!--   <td th:text="${product.reservations}">link</td>-->
                 <td th:text="${product.provider.name}">provider</td>
                 <!--   <td th:text="${product.providerId.deliveryTerm}">3 saptamani</td>-->
-<!--                <a th:href=@"{/product/{id}(id=${product.id}"> detalii </a>-->
+                <!--                <a th:href=@"{/product/{id}(id=${product.id}"> detalii </a>-->
 
                 <td>
-                    <button class="btn" data-bs-toggle="tooltip" title="Editare" type="submit">
-                        <a th:href="@{/edit/{id}(id=${product.id})}">
-                            <i aria-label="Editare" class="bi-pen" role="img"
-                               style="font-size: 1.1rem; color: blue;"></i>
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Editare"
+                           th:href="@{/product/edit/{id}(id=${product.id})}">
+                            <i aria-label="Editare" class="bi-pencil-square" role="img"
+                               ></i>
                         </a>
-                    </button>
+                        <a class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" title="Stergere"
+                           onclick="return confirm('Esti sigur ca doresti stergerea?')"
+                           th:href="@{/product/{id}(id=${product.id})}">
+                            <i aria-label="Stergere" class="bi-trash" role="img"
+                               style="font-size: 0.8rem; color: red;"></i>
+                        </a>
+                    </div>
                 </td>
-
-                <td>
-                    <button class="btn" data-bs-toggle="tooltip" title="Stergere" type="submit">
-                        <i aria-label="Stergere" class="bi-trash" role="img"
-                           style="font-size: 1.1rem; color: red;"></i>
-                    </button>
-                </td>
-                <!-- varianta ok, cu text
-                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
-                 -->
-
             </tr>
             </tbody>
         </table>
@@ -159,15 +156,7 @@
 
 
 <!-- sectiune Pagination -->
-<div class="container-sm mt-2">
-    <ul class="pagination pagination-sm justify-content-center" style="margin:20px 0">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-</div>
+<div th:replace="fragments :: pagination"></div>
 
 <!-- footer fragment-->
 <div th:replace="fragments :: footer"></div>

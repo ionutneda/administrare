@@ -1,6 +1,8 @@
 package com.luminna.administrare.entity;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -39,7 +41,7 @@ public class Product {
 
     // trying to get the provider's id only
     @JoinColumn(name = "provider_id", insertable = false, updatable = false)
-    @ManyToOne(targetEntity = Provider.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Provider.class, fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private Provider provider;
 
     @NotBlank(message = "Producatorul este obligatoriu.")
@@ -48,7 +50,7 @@ public class Product {
 
     // trying to get the category's id only
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
-    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private Category category;
 
     @Column(name = "category_id")
@@ -81,4 +83,25 @@ public class Product {
         this.availableStock=stock;
     }
 
+    //test
+//    public Product(Long id, String code, String name, BigDecimal price, Long providerId,
+//                   Long categoryId, int stock, String image, String dimensions, double weight, int availableStock) {
+//    }
+//
+//    // testing this method
+//    public Product updateWith(Product product) {
+//        return new Product(
+//                this.Id,
+//                product.code,
+//                product.name,
+//                product.price,
+//                product.providerId,
+//                product.categoryId,
+//                product.stock,
+//                product.image,
+//                product.dimensions,
+//                product.weight,
+//                product.availableStock
+//        );
+//    }
 }

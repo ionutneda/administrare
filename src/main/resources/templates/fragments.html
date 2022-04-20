@@ -22,7 +22,7 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary shadow sticky-top"    th:fragment="nav">
+<nav class="navbar navbar-expand-sm navbar-light bg-info shadow sticky-top"    th:fragment="nav">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><i class="bi-lightbulb-fill" style="font-size: 1.1rem; color: yellow;"
                                             role="img" aria-label="Stergere"></i></a>
@@ -61,16 +61,25 @@
                 </li>
             </ul>
             <form class="d-flex" action="user/login.html">
-                <button class="btn btn-primary me-2" type="submit">Autentificare</button>
+                <button class="btn btn-outline-secondary me-2 btn-sm" type="submit">Autentificare</button>
             </form>
             <form class="d-flex" action="user/logout.html">
-                <button class="btn btn-outline-dark" type="submit">Deconectare</button>
+                <button class="btn btn-outline-dark btn-sm" type="submit">Deconectare</button>
             </form>
         </div>
     </div>
 </nav>
 
-
+<!-- pagination -->
+<div class="container-sm mt-2" th:fragment="pagination">
+    <ul class="pagination pagination-sm justify-content-center" style="margin:20px 0">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</div>
 
 <!-- footer -->
 <div th:fragment="footer">
