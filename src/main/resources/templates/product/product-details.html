@@ -5,12 +5,12 @@
 
 <body>
 
-<!-- Navbar fragment -->
-<nav th:replace="fragments :: nav"></nav>
+<!-- Bar 3 (Title, back button and edit button) -->
+<nav th:replace="fragments :: nav3"></nav>
 
 
 <!-- container -->
-<div class="container-fluid container-sm p-5 my-5 border align-center">
+<div class="container-fluid container-sm p-5 mb-5 border align-center">
 
     <!-- grid -->
     <div class="row">
@@ -90,8 +90,38 @@
 
     </div>
 
+
 </div>
 
+<div class="container-fluid">
+    <p>Rezervari:</p>
+    <p th:unless="${products} and ${products.size()}">Nici un rezultat.</p>
+</div>
+<div class="container-fluid">
+    <div class="row border">
+        <div class="p-2 col-3">Autor</div>
+        <div class="p-2 col-5">Detalii</div>
+        <div class="p-2 col-1">Cantitate</div>
+        <div class="p-2 col-2">Valabilitate</div>
+        <div class="p-2 col-1"> ...</div>
+    </div>
+    <div class=" " th:each="reservation:${reservations}">
+        <div class="row border-bottom">
+            <div class="p-2 col-3" th:text="${reservation.author}">autor</div>
+            <div class="p-2 col-5" th:text="${reservation.details}">detalii</div>
+            <div class="p-2 col-1" th:text="${reservation.quantity}">cantitate</div>
+            <div class="p-2 col-2" th:text="${reservation.valability}">valabilitate</div>
+            <div class="p-2 col-1">
+                <a class="p-2" data-bs-toggle="tooltip" title="Edit"
+                   th:href="@{/reservation/{id}/edit(id=${reservation.id})}">
+                    <i aria-label="detalii" class="bi-arrow-right-square"
+                       style="font-size: 1rem; color: info;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 <!-- footer fragment-->
 <div th:replace="fragments :: footer"></div>

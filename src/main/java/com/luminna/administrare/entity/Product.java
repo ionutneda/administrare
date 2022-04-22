@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "product")
 public class Product {
@@ -83,25 +84,4 @@ public class Product {
         this.availableStock=stock;
     }
 
-    //test
-//    public Product(Long id, String code, String name, BigDecimal price, Long providerId,
-//                   Long categoryId, int stock, String image, String dimensions, double weight, int availableStock) {
-//    }
-//
-//    // testing this method
-//    public Product updateWith(Product product) {
-//        return new Product(
-//                this.Id,
-//                product.code,
-//                product.name,
-//                product.price,
-//                product.providerId,
-//                product.categoryId,
-//                product.stock,
-//                product.image,
-//                product.dimensions,
-//                product.weight,
-//                product.availableStock
-//        );
-//    }
 }

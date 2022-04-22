@@ -54,18 +54,12 @@ public class ProductService {
         return productRepository.getById(Id);
     }
 
-    // Update a product
-//    public Optional<Product> update(Long id, Product newProduct) {
-//        // Only update an item if it can be found first.
-//        return productRepository.findById(id)
-//                .map(oldItem -> {
-//                    Product updated = oldItem.updateWith(newProduct);
-//                    return productRepository.save(updated);
-//                });
-//    }
-
     // Delete one by id.
     public void delete(long id) {
         productRepository.deleteById(id);
+    }
+
+    public void updateProduct(Long id, Product product) {
+
     }
 }

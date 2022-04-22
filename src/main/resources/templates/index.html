@@ -5,158 +5,30 @@
 
 <body>
 
-<!-- Navbar fragment -->
-<nav th:replace="fragments :: nav"></nav>
 
+<div class="container-fluid container-sm p-5 mb-5 border-bottom align-center">
 
-<!-- container Search -->
-<div class="container-fluid p-5 my-2 border-bottom">
-
-    <!-- sectiune search si Categorii / toggle switches -->
-
-    <div class="row align-items-end">
-        <div class="col-sm-3 ">
-
-            <form class="row gy-2 gx-3 align-items-center " th:action="@{/}">
-                <div class="input-group mb-3 ">
-                    <input class="form-control" type="text" name="keyword" id="keyword" placeholder="Search"
-                           th:value="${keyword}">
-                    <button class="btn btn-info" type="submit" data-bs-toggle="tooltip" title="Search">
-                        <i aria-label="Search" class="bi-search" role="img"
-                           style="font-size: 1.1rem; color: yellow;"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="form-check form-switch">
-                <form th:action="@{/}" method="get">
-                    <input class="form-check-input" id="spot" name="category" type="checkbox" th:value="${spot}">
-                    <label class="form-check-label" for="spot">Spot</label>
-                </form>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="bandaLedSwitch" name="bandaLed" type="checkbox" value="yes">
-                <label class="form-check-label" for="bandaLedSwitch">Banda LED</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="driversSwitch" name="drivers" type="checkbox" value="yes">
-                <label class="form-check-label" for="driversSwitch">Alimentatoare</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="profilesSwitch" name="profiles" type="checkbox" value="yes">
-                <label class="form-check-label" for="profilesSwitch">Profiluri</label>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="inStockSwitch" name="inStock" type="checkbox" value="yes">
-                <label class="form-check-label" for="inStockSwitch">In stoc</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="bandaLedSwitch" name="bandaLed" type="checkbox" value="yes">
-                <label class="form-check-label" for="bandaLedSwitch">Banda LED</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="driversSwitch" name="drivers" type="checkbox" value="yes">
-                <label class="form-check-label" for="driversSwitch">Alimentatoare</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="profilesSwitch" name="profiles" type="checkbox" value="yes">
-                <label class="form-check-label" for="profilesSwitch">Profiluri</label>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="inStockSwitch" name="inStock" type="checkbox" value="yes">
-                <label class="form-check-label" for="inStockSwitch">In stoc</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="bandaLedSwitch" name="bandaLed" type="checkbox" value="yes">
-                <label class="form-check-label" for="bandaLedSwitch">Banda LED</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="driversSwitch" name="drivers" type="checkbox" value="yes">
-                <label class="form-check-label" for="driversSwitch">Alimentatoare</label>
-            </div>
-
-            <div class="form-check form-switch">
-                <input class="form-check-input" id="profilesSwitch" name="profiles" type="checkbox" value="yes">
-                <label class="form-check-label" for="profilesSwitch">Profiluri</label>
-            </div>
-        </div>
+    <div class="d-flex justify-content-center">
+        <h2>Administrare</h2>
     </div>
 
 </div>
 
-<p>Produse:</p>
-<p th:unless="${products} and ${products.size()}">Nici un rezultat.</p>
-<!-- sectiune Tabel -->
-<div class="table-responsive">
-    <div>
-        <table class="table table-sm table-hover">
-            <thead class="table-info">
-            <tr>
-                <th>Cod</th>
-                <th>Nume Produs</th>
-                <th>Pret Euro</th>
-                <th>Imagini</th> <!-- link -->
-                <th>Stoc</th>
-                <th>Stoc disponibil</th>
-                <!--                        <th >Rezervari</th>-->
-                <th>Furnizor</th>
-                <!--                        <th >Termen</th>-->
-                <!--                <th>Detalii</th>-->
-                <th>Actiuni</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="product : ${products}">
-                <td th:text="${product.code}">cod</td>
-                <td th:text="${product.name}">nume</td>
-                <td th:text="${product.price}">pret</td>
-                <td th:text="${product.image}">link</td>
-                <td th:text="${product.stock}">16</td>
-                <td th:text="${product.stock}">10</td>
-                <!--   <td th:text="${product.reservations}">link</td>-->
-                <td th:text="${product.provider.name}">provider</td>
-                <!--   <td th:text="${product.providerId.deliveryTerm}">3 saptamani</td>-->
-                <!--                <a th:href=@"{/product/{id}(id=${product.id}"> detalii </a>-->
+<!-- buttons -->
+<div class="container-fluid container-sm p-5 mb-5 align-center">
 
-                <td>
-                    <div class="btn-group">
-                        <a class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Editare"
-                           th:href="@{/product/edit/{id}(id=${product.id})}">
-                            <i aria-label="Editare" class="bi-pencil-square" role="img"
-                               ></i>
-                        </a>
-                        <a class="btn btn-sm btn-secondary" data-bs-toggle="tooltip" title="Stergere"
-                           onclick="return confirm('Esti sigur ca doresti stergerea?')"
-                           th:href="@{/product/{id}(id=${product.id})}">
-                            <i aria-label="Stergere" class="bi-trash" role="img"
-                               style="font-size: 0.8rem; color: red;"></i>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="d-grid gap-5">
+        <button type="button" class="btn btn-outline-success btn-block ">
+            <a th:href="@{/user/login}" style="color:inherit">Autentificare</a>
+        </button>
+
+        <button type="button" class="btn btn-outline-info btn-block ">
+            <a th:href="@{/product}" style="color:inherit">Continua fara autentificare</a>
+        </button>
     </div>
 
 </div>
 
-
-<!-- sectiune Pagination -->
-<div th:replace="fragments :: pagination"></div>
 
 <!-- footer fragment-->
 <div th:replace="fragments :: footer"></div>

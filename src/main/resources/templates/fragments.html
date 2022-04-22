@@ -5,26 +5,22 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS | Bootstrap Icons | local CSS/JS scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
-    <!-- css / javascript // nothing here - just in case -->
-<!--    <link rel="stylesheet" th:href="@{/css/styles.css}" />-->
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 <!--    <script type="text/javascript" th:src="@{/js/script.js"></script>-->
 
     <title th:text="${title}">Administrare</title>
 </head>
 
-
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-sm navbar-light bg-info shadow sticky-top"    th:fragment="nav">
+<!-- Navbar 1 -->
+<nav class="navbar navbar-expand-sm navbar-light bg-info shadow-sm sticky-top" th:fragment="nav">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="bi-lightbulb-fill" style="font-size: 1.1rem; color: yellow;"
+        <a class="navbar-brand" href="#"><i class="bi-lightbulb-fill" style="font-size: 1rem; color: yellow;"
                                             role="img" aria-label="Stergere"></i></a>
 
         <!-- Navbar toggler -->
@@ -36,12 +32,12 @@
 
         <!-- Navbar items -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
+            <ul class="navbar-nav me-auto mb-lg-0 justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/" th:href="@{/}">Acasa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/list" th:href="@{/user/list}" >Users</a>
+                    <a class="nav-link" href="/user/list" th:href="@{/user/list}">Users</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -49,8 +45,8 @@
                         Adaugare
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" th:href="@{product/add}" >Produs</a></li>
-                        <li><a class="dropdown-item" href="#" >Furnizor</a></li>
+                        <li><a class="dropdown-item" th:href="@{product/add}">Produs</a></li>
+                        <li><a class="dropdown-item" href="#">Furnizor</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -70,6 +66,62 @@
     </div>
 </nav>
 
+<!-- Bar 2 (Title, back button and edit button-hidden>>) -->
+<div class="container-fluid container-sm px-5 py-2 my-2 border-bottom align-center" th:fragment="nav2">
+
+    <div class="d-flex justify-content-around">
+        <div class="p-2">
+            <a class="float-start" data-bs-toggle="tooltip" title="Mergi la pagina anterioara"
+               onclick="history.go(-1)">
+                <i aria-label="back" class="bi-arrow-left-square"
+                   style="font-size: 1.5rem; color: info;"></i>
+            </a>
+        </div>
+        <div class="p-2">
+            <span th:text="${title}" style="font-size: 1.3rem; color: grey;">Titlu</span>
+        </div>
+<!--        hidden element -->
+        <div class="p-2 hid" >
+            <a class="float-end" data-bs-toggle="tooltip" title="Editare"
+               th:href="@{/product/update/{id}(id=${product.id})}">
+                <i aria-label="Editare" class="bi-pencil-square"
+                   style="font-size: 1.5rem; color: info;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Bar 3 (Title, back button and edit button) -->
+<div class="container-fluid container-sm px-5 py-2 my-2 border-bottom align-center" th:fragment="nav3">
+
+    <div class="d-flex justify-content-around">
+        <div class="p-2">
+            <a class="float-start" data-bs-toggle="tooltip" title="Mergi la pagina anterioara"
+               onclick="history.go(-1)">
+                <i aria-label="back" class="bi-arrow-left-square"
+                   style="font-size: 1.5rem; color: info;"></i>
+            </a>
+        </div>
+        <div class="p-2">
+            <span th:text="${title}" style="font-size: 1.3rem; color: grey;">Titlu</span>
+        </div>
+        <div class="p-2">
+            <a class="px-2" data-bs-toggle="tooltip" title="Editare"
+               th:href="@{/product/update/{id}(id=${product.id})}">
+                <i aria-label="Editare" class="bi-pencil-square"
+                   style="font-size: 1.5rem; color: info;"></i>
+            </a>
+            <a class="float-end px-2" data-bs-toggle="tooltip" title="Stergere"
+               onclick="return confirm('Esti sigur ca doresti stergerea?')"
+               th:href="@{/product/delete/{id}(id=${product.id})}">
+                <i aria-label="Stergere" class="bi-trash"
+                   style="font-size: 1.5rem; color: red;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
 <!-- pagination -->
 <div class="container-sm mt-2" th:fragment="pagination">
     <ul class="pagination pagination-sm justify-content-center" style="margin:20px 0">
@@ -83,7 +135,11 @@
 
 <!-- footer -->
 <div th:fragment="footer">
-    &copy; 2022 Luminna.ro
+    <div class=" mt-5 p-3 bg-info text-grey text-center">
+        <p>
+            &copy; 2022 Ionut Neda
+        </p>
+    </div>
 
 
     <!-- Optional JavaScript; choose one of the two! -->

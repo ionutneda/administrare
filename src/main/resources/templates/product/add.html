@@ -5,14 +5,13 @@
 
 <body>
 
-<!-- Navbar fragment -->
-<nav th:replace="fragments :: nav"></nav>
+<!-- Bar 2 (Title, back button) -->
+<nav th:replace="fragments :: nav2"></nav>
 
 
 <!-- container -->
-<div class="container-fluid container-sm p-5 my-5 border align-center">
+<div class="container-fluid container-sm p-5 mb-5 border align-center">
 
-    <h4 th:text="${title}">Titlu</h4>
 
     <form action="#" th:action="@{/product/add}"
           th:object="${product}" method="post"> <!--class="was-validated"-->
@@ -62,21 +61,23 @@
         <!-- imagine / mock -->
         <div class="form-floating mb-3">
             <input type="text" class="form-control" th:field="*{image}" id="image" placeholder="imagine" name="image"
-                   >
+            >
             <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
             <label for="image">Imagine:</label>
         </div>
 
         <!-- dimensiuni -->
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" th:field="*{dimensions}" id="dimensions" placeholder="dimensiuni" name="dimensions">
+            <input type="text" class="form-control" th:field="*{dimensions}" id="dimensions" placeholder="dimensiuni"
+                   name="dimensions">
             <span th:if="${#fields.hasErrors('dimensions')}" th:errors="*{dimensions}"></span>
             <label for="dimensions">Dimensiuni:</label>
         </div>
 
         <!-- greutate -->
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" th:field="*{weight}" id="weight" placeholder="greutate" name="weight">
+            <input type="text" class="form-control" th:field="*{weight}" id="weight" placeholder="greutate"
+                   name="weight">
             <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
             <label for="weight">Greutate:</label>
         </div>
@@ -84,10 +85,13 @@
         <!-- furnizor  ** dropdown ** -->
         <div class="form-floating mb-3">
             <select type="" class="form-select"
-                    th:field="*{providerId}" id="providerDropDown" placeholder="furnizor" name="provider" required>
+                    th:field="*{providerId}" id="providerDropDown" placeholder="furnizor" name="providerId" required>
+
                 <option th:each="provider : ${providers}"
                         th:value="${provider.id}"
-                        th:text="${provider.name}"></option>
+                        th:text="${provider.name}">
+
+                </option>
             </select>
             <span th:if="${#fields.hasErrors('provider')}" th:errors="*{provider}"></span>
             <label for="providerDropDown">Furnizor:</label>
@@ -97,10 +101,13 @@
         <!-- categorie produs  ** dropdown ** -->
         <div class="form-floating mb-3">
             <select type="" class="form-select"
-                    th:field="*{categoryId}" id="categoryDropDown" placeholder="categorie" name="category">
+                    th:field="*{categoryId}" id="categoryDropDown" placeholder="categorie" name="categoryId">
+
                 <option th:each="category : ${categories}"
                         th:value="${category.id}"
-                        th:text="${category.name}"></option>
+                        th:text="${category.name}">
+
+                </option>
             </select>
             <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
             <label for="categoryDropDown">Categorie produs:</label>
@@ -108,7 +115,12 @@
         </div>
 
         <!-- submit -->
-        <button type="submit" class="btn btn-primary">Salveaza</button>
+        <ul class="list-inline">
+            <li class="list-inline-item"><button type="submit" class="btn btn-info">Salveaza</button></li>
+            <li class="list-inline-item">Sau renunta si mergi la
+                <a href="/" th:href="@{/}">prima pagina.</a>
+            </li>
+        </ul>
     </form>
 
 
